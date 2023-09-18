@@ -12,19 +12,25 @@
     <link rel="stylesheet" href="../../../../plugin/prism/prism.css" />
     <script src="../../../../plugin/prism/prism.js" defer></script>
     <script>
-      alert('안뇽하세요 유비니의 홈페이지에 오신 것을 환영합니다');
-      prompt('어쩌고?');
+      alert('안뇽하세요');
       let userInputFromPrompt;
-      userInputFromPrompt = prompt('어쩌고?', '홍길동');
-      confirm('어쩌고~~~');
-      confirm('ㅇㅇ 너의 이름은' + userInputFromPrompt + '이구나');
+      userInputFromPrompt = prompt('당신의 이름은?', '김유빈');
+      let confirmVal = confirm(
+        '당신의 이름이 ' + userInputFromPrompt + ' 이/가 맞습니까?'
+      );
+      if (confirmVal == true) {
+        alert('환영합니다. ' + userInputFromPrompt + '님!');
+      }
     </script>
   </head>
   <body>
     <div class="viewport">
       <main>
         <section>
-          <div class="container"></div>
+          <div class="container">
+            <h3>김유빈 W2 Sketch1</h3>
+            <h5>inline script</h5>
+          </div>
         </section>
       </main>
       <footer>
@@ -34,6 +40,7 @@
             <pre
               class="line-numbers"
               data-src="./index.html"
+              data-line="14-24"
               data-download-link></pre>
           </div>
         </section>

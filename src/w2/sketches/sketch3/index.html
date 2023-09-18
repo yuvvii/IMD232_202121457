@@ -11,18 +11,25 @@
     <link rel="stylesheet" href="../../../../style/style.css" />
     <link rel="stylesheet" href="../../../../plugin/prism/prism.css" />
     <script src="../../../../plugin/prism/prism.js" defer></script>
-    <!-- <script>
-      let userName = prompt('너의 이름은?', '율리');
-      document.getElementById('html-id').textContent =
-        '환영합니다! ' + userName + '님';
-    </script> -->
+    <script>
+      // let userName = prompt('너의 이름은?', '율리');
+      // let isUserNameCorrect = confirm(
+      //   '당신의 이름이 ' + userName + ' 맞습니까?'
+      // );
+      // if (isUserNameCorrect == true) {
+      //   document.getElementById('html-id').textContent =
+      //     '환영합니다! ' + userName + '님';
+      // }
+    </script>
   </head>
   <body>
     <div class="viewport">
       <main>
         <section>
           <div class="container">
-            <h2 id="html-id"></h2>
+            <h3>김유빈 W2 Sketch3</h3>
+            <h5>location of the script</h5>
+            <h3 id="html-id"></h3>
           </div>
         </section>
       </main>
@@ -33,6 +40,7 @@
             <pre
               class="line-numbers"
               data-src="./index.html"
+              data-line="14-23,47-56"
               data-download-link></pre>
           </div>
         </section>
@@ -40,8 +48,13 @@
     </div>
     <script>
       let userName = prompt('너의 이름은?', '율리');
-      document.getElementById('html-id').textContent =
-        '환영합니다! ' + userName + '님';
+      let isUserNameCorrect = confirm(
+        '당신의 이름이 ' + userName + ' 맞습니까?'
+      );
+      if (isUserNameCorrect == true) {
+        document.getElementById('html-id').textContent =
+          '환영합니다! ' + userName + '님';
+      }
     </script>
   </body>
 </html>
