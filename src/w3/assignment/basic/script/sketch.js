@@ -1,10 +1,9 @@
 function setup() {
-  setCanvasContainer('p5-canvas', 700, 500, true);
+  setCanvasContainer('p5-canvas', 700, 500);
   background('#ffdee7');
 }
 
 function draw() {
-  width;
   background('#ffdee7');
   rectMode(CORNER);
   colorMode(RGB);
