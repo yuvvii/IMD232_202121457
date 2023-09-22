@@ -72,6 +72,7 @@ counter++;
 console.log('counter', counter);
 counter--;
 console.log('counter', counter);
+
 let remainder = counter % 8;
 console.log('reamainder', remainder);
 counter++;

@@ -6,6 +6,6 @@ function setup() {
 }
 
 function draw() {
-  background(255, 0, 0);
+  background('pink');
   circle(mouseX, mouseY, 100);
 }

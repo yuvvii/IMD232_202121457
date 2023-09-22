@@ -57,6 +57,7 @@ function draw() {
   point(320, 400);
   point(330, 400);
   point(340, 400);
+
   stroke(50, 100, 20);
   strokeWeight(3);
   point(300, 410);
@@ -64,6 +65,7 @@ function draw() {
   point(320, 410);
   point(330, 410);
   point(340, 410);
+
   stroke(50, 100, 30);
   strokeWeight(4);
   point(300, 420);
@@ -71,6 +73,7 @@ function draw() {
   point(320, 420);
   point(330, 420);
   point(340, 420);
+
   stroke(50, 100, 40);
   strokeWeight(5);
   point(300, 430);
@@ -78,6 +81,7 @@ function draw() {
   point(320, 430);
   point(330, 430);
   point(340, 430);
+
   stroke(50, 100, 50);
   strokeWeight(6);
   point(300, 440);
@@ -85,6 +89,7 @@ function draw() {
   point(320, 440);
   point(330, 440);
   point(340, 440);
+
   stroke(50, 100, 60);
   strokeWeight(7);
   point(300, 450);
