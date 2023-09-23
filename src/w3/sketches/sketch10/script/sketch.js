@@ -1,30 +1,13 @@
-// let x;
-// let y;
-let p = {};
-// let velocityX = 3;
-// let velocityY = 5;
-let v = {
-  x: 3,
-  y: 5,
-};
-
 function setup() {
   setCanvasContainer('canvas', 500, 300, true);
   background(255);
-  // x = width / 2.0;
-  // y = height / 2.0;
-  p.x = width / 2;
-  p.y = height / 2;
-  console.log('p', p);
-  console.log('v', v);
 }
 
 function draw() {
   background(255);
-  //   x += velocityX;
-  //   y += velocityY;
-  p.x += v.x;
-  p.y += v.y;
+
+  let mouse = createVector(mouseX, mouseY);
+  let center = createVector(width / 2, height / 2);
 
   //   ellipse(x, y, 50);
   ellipse(p.x, p.y, 50);
