@@ -38,7 +38,7 @@ function draw() {
   strokeWeight(4);
   stroke('deeppink');
   line(0, 0, acc.x * 0.1, acc.y * 0.1);
-  acc.mult(3);
+  acc.mult(0.1);
 }
 
 function update() {
