@@ -1,20 +1,12 @@
 let pos;
 let vel;
+let acc;
 
 function setup() {
   setCanvasContainer('canvas', 3, 2, true);
   background('salmon');
   pos = createVector(random(width), random(height));
-  // vel = createVector(random(-5, 5), random(-5, 5));
-
-  //일정 속도 방법 1
-  // vel = createVector(1, 0);
-  // vel.rotate(random(TAU));
-  // vel.mult(5);
-
-  //일정 속도 방법 2
-  vel = p5.Vector.random2D();
-  vel.mult(5);
+  vel = createVector(0, 0);
 }
 
 function draw() {
@@ -25,6 +17,11 @@ function draw() {
 }
 
 function update() {
+  acc = p5.Vector.random2D();
+  acc.mult(1);
+
+  vel.add(acc);
+  vel.limit(10);
   pos.add(vel);
 }
 
@@ -42,7 +39,7 @@ function checkEdges() {
 }
 
 function display() {
-  fill('cornsilk');
   noStroke();
+  fill('cornsilk');
   ellipse(pos.x, pos.y, 50);
 }
