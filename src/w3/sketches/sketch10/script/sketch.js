@@ -1,28 +1,27 @@
+let mv;
+let cv;
+
 function setup() {
-  setCanvasContainer('canvas', 500, 300, true);
-  background(255);
+  setCanvasContainer('canvas', 3, 2, true);
+  background('pink');
+  cv = createVector(width / 2, height / 2);
+  mv = createVector();
 }
 
 function draw() {
-  background(255);
+  background('pink');
+  strokeWeight(2);
+  stroke('cornflowerblue');
+  line(0, 0, cv.x, cv.y);
 
-  let mouse = createVector(mouseX, mouseY);
-  let center = createVector(width / 2, height / 2);
+  mv.x = mouseX;
+  mv.y = mouseY;
 
-  //   ellipse(x, y, 50);
-  ellipse(p.x, p.y, 50);
+  stroke('crimson');
+  line(0, 0, mv.x, mv.y);
 
-  //   if (x < 0 || x > width) {
-  //     velocityX *= -1;
-  //   }
-  //   if (y < 0 || y > height) {
-  //     velocityY *= -1;
-  //   }
-
-  if (p.x < 0 || p.x > width) {
-    v.x *= -1;
-  }
-  if (p.y < 0 || p.y > height) {
-    v.y *= -1;
-  }
+  mv.sub(cv);
+  translate(cv.x, cv.y);
+  stroke('white');
+  line(0, 0, mv.x, mv.y);
 }
