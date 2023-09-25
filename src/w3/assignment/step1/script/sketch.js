@@ -8,7 +8,7 @@ function setup() {
   setCanvasContainer('canvas', 3, 2, true);
   background('pink');
   pos = createVector(random(width), random(height));
-  vel = createVector();
+  vel = createVector(1, 1);
   acc = createVector();
   mv = createVector();
   posToMv = createVector();
@@ -20,30 +20,32 @@ function draw() {
   checkEdges();
   display();
 
-  strokeWeight(3);
-
   mv.set(mouseX, mouseY);
-
   posToMv = p5.Vector.sub(mv, pos);
+
+  strokeWeight(5);
   stroke('white');
   translate(pos.x, pos.y);
   line(0, 0, posToMv.x, posToMv.y);
 
-  strokeWeight(2);
-
-  stroke('lime');
-  line(0, 0, vel.x * 10, vel.y * 10);
-
+  strokeWeight(3);
   stroke('yellow');
-  line(0, 0, acc.x * 100, acc.y * 100);
+  acc.normalize();
+  acc.mult(100);
+  line(0, 0, acc.x, acc.y);
+
+  strokeWeight(2);
+  stroke('lime');
+  // vel.normalize();
+  // vel.mult(20);
+  line(0, 0, vel.x * 10, vel.y * 10);
 }
 
 function update() {
   acc = p5.Vector.random2D();
-  acc.mult(1);
 
   vel.add(acc);
-  vel.limit(5);
+  vel.limit(10);
   pos.add(vel);
 }
 
@@ -63,5 +65,5 @@ function checkEdges() {
 function display() {
   noStroke();
   fill('black');
-  ellipse(pos.x, pos.y, 50);
+  ellipse(pos.x, pos.y, 80);
 }

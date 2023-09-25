@@ -24,26 +24,25 @@ function draw() {
 
   strokeWeight(3);
   translate(pos.x, pos.y);
-
   posToMv = p5.Vector.sub(mv, pos);
+
   stroke('white');
   line(0, 0, posToMv.x, posToMv.y);
 
   strokeWeight(2);
-
   stroke('lime');
   line(0, 0, vel.x * 10, vel.y * 10);
 
   acc.normalize();
+  acc.mult(0.1);
   strokeWeight(4);
   stroke('deeppink');
-  line(0, 0, acc.x * 0.1, acc.y * 0.1);
-  acc.mult(0.1);
+  line(0, 0, acc.x, acc.y);
 }
 
 function update() {
   vel.add(acc);
-  vel.limit(5);
+  vel.limit(8);
   pos.add(vel);
 }
 
