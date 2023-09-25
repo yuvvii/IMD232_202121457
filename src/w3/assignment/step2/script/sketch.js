@@ -34,6 +34,7 @@ function draw() {
   line(0, 0, vel.x * 10, vel.y * 10);
 
   acc.normalize();
+  acc.mult(0.1);
   strokeWeight(4);
   stroke('deeppink');
   line(0, 0, acc.x * 10, acc.y * 10);
