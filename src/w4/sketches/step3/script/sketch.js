@@ -1,32 +1,36 @@
-// let x;
-// let y;
-//공의 위치
-let position;
-// let velocityX = 3;
-// let velocityY = 5;
-//공의 속력
-let velocity;
+let moverA;
+let moverB;
+let wind;
+let gravity;
 
 function setup() {
-  setCanvasContainer('canvas', 500, 300, true);
-  background(255);
-  // x = width / 2.0;
-  // y = height / 2.0;
-  position = createVector(width / 2, height / 2);
-  velocity = createVector(3, 5);
+  setCanvasContainer('canvas', 3, 2, true);
+  background('pink');
+  moverA = new MoverWithMass(width / 3, height / 2, 10);
+  moverB = new MoverWithMass((2 * width) / 3, height / 2, 1);
+
+  wind = createVector(0.3, 0);
+  gravity = createVector(0, 0.1);
 }
 
 function draw() {
-  background(255);
-  // x += velocityX;
-  // y += velocityY;
-  position.add(velocity);
-  ellipse(position.x, position.y, 50);
+  background('pink');
 
-  if (position.x < 0 || position.x > width) {
-    velocity.x *= -1;
+  moverA.applyForce(gravity);
+  if (mouseIsPressed && isMouseInsideCanvas()) {
+    moverA.applyForce(wind);
   }
-  if (position.y < 0 || position.y > height) {
-    velocity.y *= -1;
+  moverA.update();
+  moverA.checkEdges();
+  moverA.display();
+  moverA.displayVector();
+
+  moverB.applyForce(gravity);
+  if (mouseIsPressed && isMouseInsideCanvas()) {
+    moverB.applyForce(wind);
   }
+  moverB.update();
+  moverB.checkEdges();
+  moverB.display();
+  moverB.displayVector();
 }

@@ -1,45 +1,56 @@
-// let x;
-// let y;
-let p = {};
-// let velocityX = 3;
-// let velocityY = 5;
-let v = {
-  x: 3,
-  y: 5,
-};
+let moverA;
+let moverB;
+let gravity;
+let wind;
 
 function setup() {
-  setCanvasContainer('canvas', 500, 300, true);
-  background(255);
-  // x = width / 2.0;
-  // y = height / 2.0;
-  p.x = width / 2;
-  p.y = height / 2;
-  console.log('p', p);
-  console.log('v', v);
+  setCanvasContainer('canvas', 3, 2, true);
+  background('pink');
+  moverA = new Mover(width / 3, height / 2, 10);
+  moverB = new Mover((2 * width) / 3, height / 2, 1);
+  gravity = createVector(0, 0.1);
+  wind = createVector(0.2, 0);
 }
 
 function draw() {
-  background(255);
-  //   x += velocityX;
-  //   y += velocityY;
-  p.x += v.x;
-  p.y += v.y;
+  background('pink');
 
-  //   ellipse(x, y, 50);
-  ellipse(p.x, p.y, 50);
-
-  //   if (x < 0 || x > width) {
-  //     velocityX *= -1;
-  //   }
-  //   if (y < 0 || y > height) {
-  //     velocityY *= -1;
-  //   }
-
-  if (p.x < 0 || p.x > width) {
-    v.x *= -1;
+  let gravityA = createVector(gravity.x, gravity.y);
+  gravityA.mult(moverA.mass);
+  moverA.applyForce(gravityA);
+  if (mouseIsPressed && isMouseInsideCanvas()) {
+    moverA.applyForce(wind);
   }
-  if (p.y < 0 || p.y > height) {
-    v.y *= -1;
+  if (moverA.contactEdge()) {
+    let c = 0.5;
+    let friction = moverA.vel.copy();
+    friction.mult(-1);
+    friction.mult(c);
+    moverA.applyForce(friction);
   }
+
+  moverA.update();
+  moverA.checkEdges();
+  moverA.display();
+  moverA.displayVectors();
+
+  let gravityB = createVector(gravity.x, gravity.y);
+  gravityB.mult(moverB.mass);
+  moverB.applyForce(gravityB);
+  if (mouseIsPressed && isMouseInsideCanvas()) {
+    moverB.applyForce(wind);
+  }
+
+  if (moverB.contactEdge()) {
+    let c = 0.9;
+    let friction = moverB.vel.copy();
+    friction.mult(-1);
+    friction.mult(c);
+    moverB.applyForce(friction);
+  }
+
+  moverB.update();
+  moverB.checkEdges();
+  moverB.display();
+  moverB.displayVectors();
 }

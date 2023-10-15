@@ -1,36 +1,24 @@
-let ball;
-let ball2;
-let gravity;
+let mover;
 let wind;
-let att;
+let gravity;
 
 function setup() {
   setCanvasContainer('canvas', 3, 2, true);
-  ball = new Mover(width / 3, 0, 50);
-  ball2 = new Mover((2 * width) / 3, 0, 10);
+  background('pink');
+  mover = new MoverNoMass(width / 2, height / 2, 50);
+  wind = createVector(0.3, 0);
   gravity = createVector(0, 0.1);
-  wind = createVector(-1, 0);
-  att = new Attractor(width / 2, height / 2);
 }
 
 function draw() {
-  // let g = p5.Vector.mult(gravity, ball.mass);
-  // ball.applyForce(g);
-  // let g2 = p5.Vector.mult(gravity, ball2.mass);
-  // ball2.applyForce(g2);
-  // if (mouseIsPressed) {
-  //   ball.applyForce(wind);
-  //   ball2.applyForce(wind);
-  // }
-
-  let force1 = att.attract(ball);
-  let force2 = att.attract(ball2);
-  ball.update();
-  ball2.update();
-  // ball.edgeBounce();
-  // ball2.edgeBounce();
   background('pink');
-  fill('black');
-  ball.display();
-  ball2.display();
+
+  mover.addAcc(gravity);
+  if (mouseIsPressed && isMouseInsideCanvas()) {
+    mover.addAcc(wind);
+  }
+  mover.update();
+  mover.checkEdges();
+  mover.display();
+  mover.displayVector();
 }
