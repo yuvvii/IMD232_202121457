@@ -1,53 +1,66 @@
-let pos;
-let vel;
-let acc;
-let mv;
-let posToMv;
+let mover;
+let gravityA;
+let mVec;
+let pMVec;
 
 function setup() {
-  setCanvasContainer('canvas', 3, 2, true);
+  setCanvasContainer('canvas', 1, 1, true);
+
+  mover = new Mover(width / 2, height / 2, 40);
+  gravity = createVector(0, 0.5);
+
+  mVec = createVector(mouseX, mouseY);
+  pMVec = createVector(pmouseX, pmouseY);
+
   background('pink');
-  pos = createVector(random(width), random(height));
-  vel = createVector();
-  acc = createVector();
-  mv = createVector();
-  posToMv = createVector();
 }
 
 function draw() {
+  const force = p5.Vector.mult(gravity, mover.mass);
   background('pink');
-  update();
-  display();
 
-  mv.set(mouseX, mouseY);
-  acc.set(posToMv.x, posToMv.y);
+  let gravityA = createVector(gravity.x, gravity.y);
+  gravityA.mult(mover.mass);
+  mover.applyForce(gravityA);
+  if (mover.contackEdge()) {
+    let c = 0.5;
+    let friction = mover.vel.copy();
+    friction.mult(-1);
+    friction.mult(c);
+    mover.applyForce(friction);
+  }
 
-  strokeWeight(3);
-  translate(pos.x, pos.y);
-  posToMv = p5.Vector.sub(mv, pos);
+  if (mover.isDragging) {
+    const dragForce = p5.Vector.sub(mVec, pMVec);
+    mover.applyForce(dragForce);
+  }
 
-  stroke('white');
-  line(0, 0, posToMv.x, posToMv.y);
-
-  strokeWeight(2);
-  stroke('lime');
-  line(0, 0, vel.x * 10, vel.y * 10);
-
-  acc.normalize();
-  acc.mult(0.1);
-  strokeWeight(4);
-  stroke('deeppink');
-  line(0, 0, acc.x * 10, acc.y * 10);
+  mover.update();
+  mover.checkEdges();
+  mover.display();
 }
 
-function update() {
-  vel.add(acc);
-  vel.limit(8);
-  pos.add(vel);
+function mouseMoved() {
+  mover.mouseMoved(mouseX, mouseY);
 }
 
-function display() {
-  noStroke();
-  fill('black');
-  ellipse(pos.x, pos.y, 50);
+function mousePressed() {
+  mover.mousePressed(mouseX, mouseY);
+}
+
+function mouseDragged() {
+  mover.mouseDragged(mouseX, mouseY);
+
+  if (mover.isDragging) {
+    const dragForce = mover.draggingVelocity.copy().mult(0.01);
+    mover.applyForce(dragForce);
+  }
+}
+
+function mouseReleased() {
+  pMVec.set(pmouseX, pmouseY);
+  mVec.set(mouseX, mouseY);
+  throwingForce = p5.Vector.sub(mVec, pMVec);
+  mover.applyForce(throwingForce.mult(0.01));
+  mover.mouseReleased();
 }

@@ -1,19 +1,17 @@
 let bodies = [];
-
-let G = 0.3;
-
+let G = 1;
 let showVector = false;
 
 function setup() {
-  setCanvasContainer('canvas', 1, 1, true);
+  setCanvasContainer('canvas', 3, 2, true);
   reset();
 }
 
 function draw() {
   background('pink');
 
-  for (let i = 0; i < 40; i++) {
-    for (let j = 0; j < 40; j++) {
+  for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
       if (i !== j) {
         let forceForJ = bodies[i].attract(bodies[j]);
         bodies[j].applyForce(forceForJ);
@@ -34,8 +32,8 @@ function mousePressed() {
 }
 
 function reset() {
-  for (let i = 0; i < 40; i++) {
-    bodies[i] = new Body(random(width), random(height), random(16, 100));
+  for (let i = 0; i < 10; i++) {
+    bodies[i] = new Body(random(width), random(height), random(0.1, 2));
   }
 }
 
