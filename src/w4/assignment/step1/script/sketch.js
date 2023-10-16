@@ -5,7 +5,7 @@ let G = 1;
 let showVector = false;
 
 function setup() {
-  setCanvasContainer('canvas', 3, 2, true);
+  setCanvasContainer('canvas', 1, 1, true);
   reset();
 }
 
@@ -36,11 +36,5 @@ function mousePressed() {
 function reset() {
   for (let i = 0; i < 24; i++) {
     bodies[i] = new Body(random(width), random(height), random(16, 100));
-  }
-}
-
-function keyPressed() {
-  if (key === 's' || key === 'S') {
-    showVector = !showVector;
   }
 }

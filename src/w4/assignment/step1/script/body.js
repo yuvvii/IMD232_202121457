@@ -1,3 +1,10 @@
+// Original Code from: https://editor.p5js.org/natureofcode/sketches/uT9VpVvCO
+// Daniel Shiffman
+// The Nature of Code
+// Example 2-9: N-Bodies Attraction
+
+//Modified by OO-SUNG SON (spctrm404)
+
 class Body {
   constructor(x, y, mass) {
     this.pos = createVector(x, y);
@@ -27,13 +34,6 @@ class Body {
   update() {
     this.vel.add(this.acc);
     this.pos.add(this.vel);
-
-    this.velVisualization.set(this.vel);
-    this.velVisualization.mult(10);
-
-    this.accVisualization.set(this.acc);
-    this.accVisualization.mult(100);
-
     this.acc.set(0, 0);
   }
 
