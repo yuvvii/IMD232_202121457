@@ -22,8 +22,6 @@ function draw() {
   background('pink');
   noFill();
 
-  stripeGap = min(width, height) / 10;
-
   for (let a = 0; a < Num; a++) {
     for (let b = 0; b < Num2; b++) {
       let x = Begin + a * (Gap * 4);
@@ -35,14 +33,9 @@ function draw() {
       ellipse(x, y, 2 * Gap);
     }
   }
-  for (let a = 0; r < Num; a++) {
-    for (let b = 0; b < Num2; b++) {
-      push();
-      translate();
-      rotate();
-      pop();
-    }
-  }
 
-  angleBegin += angleBeginVel;
+  push();
+  translate();
+  rotate();
+  pop();
 }
