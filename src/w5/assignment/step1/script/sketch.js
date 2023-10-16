@@ -1,7 +1,7 @@
-const stripeNum = 8;
-const stripeNum2 = 8;
-const stripeGap = 40;
-const margin = stripeGap / 2;
+const Num = 8;
+const Num2 = 8;
+const Begin = 60;
+const Gap = 30;
 
 let angleBegin = 0;
 let angleBeginVel;
@@ -20,23 +20,23 @@ function setup() {
 
 function draw() {
   background('pink');
+  noFill();
 
-  for (let a = 0; a < stripeNum; a++) {
-    for (let b = 0; b < stripeNum2; b++) {
-      let x = map(a, 0, stripeNum - 1, stripeGap, width - stripeGap);
-      let y = map(b, 0, stripeNum2 - 1, stripeGap, height - stripeGap);
+  stripeGap = min(width, height) / 10;
 
-      noFill();
-      strokeWeight(1);
+  for (let a = 0; a < Num; a++) {
+    for (let b = 0; b < Num2; b++) {
+      let x = Begin + a * (Gap * 4);
+      let y = Begin + b * (Gap * 4);
+
+      strokeWeight(2);
       let randomColor = random(colors);
       stroke(randomColor);
-
-      ellipse(x, y, stripeGap);
-      line(x, y);
+      ellipse(x, y, 2 * Gap);
     }
   }
-  for (let r = 0; r < rNum; r++) {
-    for (let c = 0; c < cNum; c++) {
+  for (let a = 0; r < Num; a++) {
+    for (let b = 0; b < Num2; b++) {
       push();
       translate();
       rotate();
