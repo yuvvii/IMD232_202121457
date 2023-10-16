@@ -50,11 +50,6 @@ function mousePressed() {
 
 function mouseDragged() {
   mover.mouseDragged(mouseX, mouseY);
-
-  if (mover.isDragging) {
-    const dragForce = mover.draggingVelocity.copy().mult(0.01);
-    mover.applyForce(dragForce);
-  }
 }
 
 function mouseReleased() {

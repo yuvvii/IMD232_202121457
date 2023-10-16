@@ -1,19 +1,19 @@
 class Body {
   constructor(x, y, mass) {
-    this.position = createVector(x, y);
-    this.velocity = createVector(0, 0);
-    this.acceleration = createVector(0, 0);
+    this.pos = createVector(x, y);
+    this.vel = createVector(0, 0);
+    this.acc = createVector(0, 0);
 
     this.mass = mass;
-    this.radius = mass ** 0.5 * 5;
+    this.radius = mass ** 0.05 * random(25, 50);
 
-    this.velocityVisualization = createVector(0, 0);
-    this.accelerationVisualization = createVector(0, 0);
+    this.velVisualization = createVector(0, 0);
+    this.accVisualization = createVector(0, 0);
   }
 
   attract(body) {
-    let force = p5.Vector.sub(this.position, body.position);
-    let distance = constrain(force.mag(), 16, 100);
+    let force = p5.Vector.sub(this.pos, body.pos);
+    let distance = constrain(force.mag(), 20, 80);
     let strength = (G * (this.mass * body.mass)) / distance ** 2;
     force.setMag(strength);
     return force;
@@ -21,43 +21,26 @@ class Body {
 
   applyForce(force) {
     let forceDividedByMass = p5.Vector.div(force, this.mass);
-    this.acceleration.add(forceDividedByMass);
+    this.acc.add(forceDividedByMass);
   }
 
   update() {
-    this.velocity.add(this.acceleration);
-    this.position.add(this.velocity);
+    this.vel.add(this.acc);
+    this.pos.add(this.vel);
 
-    this.velocityVisualization.set(this.velocity);
-    this.velocityVisualization.mult(10);
+    this.velVisualization.set(this.vel);
+    this.velVisualization.mult(10);
 
-    this.accelerationVisualization.set(this.acceleration);
-    this.accelerationVisualization.mult(100);
+    this.accVisualization.set(this.acc);
+    this.accVisualization.mult(100);
 
-    this.acceleration.set(0, 0);
+    this.acc.set(0, 0);
   }
 
   display() {
+    colorMode(HSL, 360, 100, 100, 100);
     noStroke();
-    fill(127, 127);
-    circle(this.position.x, this.position.y, this.radius * 2);
-  }
-
-  displayVectors() {
-    noFill();
-    stroke('red');
-    line(
-      this.position.x,
-      this.position.y,
-      this.position.x + this.velocityVisualization.x,
-      this.position.y + this.velocityVisualization.y
-    );
-    stroke('blue');
-    line(
-      this.position.x,
-      this.position.y,
-      this.position.x + this.accelerationVisualization.x,
-      this.position.y + this.accelerationVisualization.y
-    );
+    fill(0, 100, 60, 25);
+    ellipse(this.pos.x, this.pos.y, this.radius * 2);
   }
 }

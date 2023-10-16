@@ -59,7 +59,7 @@ class Mover {
 
   display() {
     noStroke();
-    fill('salmon');
+    fill(0);
     ellipse(this.pos.x, this.pos.y, 2 * this.radius);
   }
 
