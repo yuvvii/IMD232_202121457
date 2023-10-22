@@ -11,7 +11,7 @@ class Particle {
   }
   applyForce(force) {
     const acc = p5.Vector.div(force, this.mass);
-    this.acc.set(acc);
+    this.acc.add(acc);
   }
 
   update() {
@@ -23,8 +23,8 @@ class Particle {
 
   display() {
     const normalizedLife = constrain(this.life / this.lifeSpan, 0, 1);
-    noStroke();
-    fill(0, 255 * normalizedLife);
+    stroke(0, 255 * normalizedLife);
+    fill(255, 255 * normalizedLife);
     ellipse(this.pos.x, this.pos.y, this.rad * 2);
   }
 

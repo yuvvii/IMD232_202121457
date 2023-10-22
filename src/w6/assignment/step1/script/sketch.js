@@ -1,41 +1,28 @@
-const Num = 8;
-const Num2 = 8;
-const Begin = 60;
-const Gap = 30;
-
-let angleBegin = 0;
-let angleBeginVel;
-let angleStep;
-
-let colors = [];
+let emitter = [];
+let gravity = 0;
 
 function setup() {
-  setCanvasContainer('canvas', 1, 1, true);
-  background('pink');
+  setCanvasContainer('canvas', 2, 1, true);
+  rectMode(CENTER);
+  gravity = createVector(0, 0.06);
 
-  for (let i = 0; i < 4; i++) {
-    colors.push(color(random(255), random(255), random(255)));
-  }
+  background('pink');
 }
 
 function draw() {
+  emitter.push(new Emitter(random(width), 0));
+
   background('pink');
-  noFill();
-
-  for (let a = 0; a < Num; a++) {
-    for (let b = 0; b < Num2; b++) {
-      let x = Begin + a * (Gap * 4);
-      let y = Begin + b * (Gap * 4);
-
-      strokeWeight(2);
-      let randomColor = random(colors);
-      stroke(randomColor);
-      ellipse(x, y, 2 * Gap);
+  for (let a = 0; a < emitter.length; a++) {
+    emitter[a].applyForce(gravity);
+    emitter[a].update();
+    emitter[a].display();
+  }
+  for (let a = emitter.length - 1; a >= 0; a--) {
+    if (emitter[a].isDead()) {
+      emitter.splice(a, 1);
     }
   }
 
-  push();
-  translate();
-  rotate();
-  pop();
+  console.log(emitter.length);
 }

@@ -1,34 +1,30 @@
-let pendulumA;
-let gravity;
+let emitter;
+let emitters = [];
+let gravity = 0;
 
 function setup() {
-  setCanvasContainer('canvas', 1, 1, true);
-
-  pendulumA = new Pendulum(width / 2, 10, height / 3, (TAU / 360) * 45, 25);
-  gravity = createVector(0, 0.5);
+  setCanvasContainer('canvas', 3, 2, true);
+  emitter = new Emitter(width / 2, height / 2);
+  gravity = createVector(0, 0.1);
 
   background('pink');
+  for (let a = 0; a < 100; a++) emitter.createParticle;
 }
-
 function draw() {
-  pendulumA.applyGravity(gravity);
-  pendulumA.update();
-  background('pink');
-  pendulumA.display();
-}
+  for (let a = 0; a < emitters.length; a++) {
+    emitters[a].addParticle();
+  }
 
-function mouseMoved() {
-  pendulumA.mouseMoved(mouseX, mouseY);
+  background('pink');
+  for (let a = 0; a < emitters.length; a++) {
+    emitters[a].addParticle();
+    emitters[a].update(gravity);
+    emitters[a].display();
+  }
 }
 
 function mousePressed() {
-  pendulumA.mousePressed(mouseX, mouseY);
+  emitters.push(new Emitter(mouseX, mouseY));
 }
 
-function mouseDragged() {
-  pendulumA.mouseDragged(mouseX, mouseY);
-}
-
-function mouseReleased() {
-  pendulumA.mouseReleased();
-}
+console.log(emitters.length);

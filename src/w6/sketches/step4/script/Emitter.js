@@ -9,6 +9,13 @@ class Emitter {
     );
   }
 
+  applyRepeller(repeller) {
+    this.particles.forEach((eachParticle, idx) => {
+      const force = repeller.repel(eachParticle);
+      eachParticle.applyForce(force);
+    });
+  }
+
   applyGravity(gravity) {
     for (let eachParticle of this.particles) {
       const force = p5.Vector.mult(gravity, eachParticle.mass);
@@ -20,14 +27,17 @@ class Emitter {
     for (let a = this.particles.length - 1; a >= 0; a--) {
       this.particles[a].update();
       if (this.particles[a].isDead()) {
-        this.particles[a].splice(a, 1);
+        this.particles.splice(a, 1);
       }
     }
   }
 
   display() {
-    for (let a = 0; a < this.particles.length; a++) {
-      this.particles[a].display();
-    }
+    // for (let a = 0; a < this.particles.length; a++) {
+    //   this.particles[a].display();
+    // }
+    this.particles.forEach((eachParticle) => {
+      eachParticle.display();
+    });
   }
 }
