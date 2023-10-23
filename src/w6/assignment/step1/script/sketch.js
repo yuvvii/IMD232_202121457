@@ -4,13 +4,13 @@ let gravity = 0;
 function setup() {
   setCanvasContainer('canvas', 2, 1, true);
   rectMode(CENTER);
-  gravity = createVector(0, 0.01);
+  gravity = createVector(0, 0.03);
 
   background('pink');
 }
 
 function draw() {
-  emitter.push(new Emitter(random(width), 0));
+  emitter.push(new Emitter(random(width), -30));
 
   background('pink');
   for (let a = 0; a < emitter.length; a++) {

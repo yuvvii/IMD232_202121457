@@ -20,7 +20,7 @@ class Particle {
     this.acc.mult(0);
     this.lifeSpan -= 1;
 
-    let alpha = map(this.lifeSpan, 0, 60, 0, 100);
+    let alpha = map(this.lifeSpan, 0, 40, 0, 100);
     this.color.setAlpha(alpha);
   }
 
