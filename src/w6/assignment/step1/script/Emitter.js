@@ -1,10 +1,10 @@
 class Emitter {
   constructor(x, y) {
     this.pos = createVector(x, y);
-    this.vel = createVector(0, 2);
+    this.vel = createVector(0, 1);
     this.acc = createVector(0, 0);
     this.rad = 6;
-    this.lifeSpan = 255;
+    this.lifeSpan = 512;
     colorMode(HSL, 360, 100, 100);
     this.color = color(random(360), random(70, 100), random(70, 100));
     this.angle = random(360);

@@ -1,30 +1,25 @@
 let emitter;
-let emitters = [];
-let gravity = 0;
+let gravity;
 
 function setup() {
   setCanvasContainer('canvas', 3, 2, true);
-  emitter = new Emitter(width / 2, height / 2);
+  emitter = new Emitter(mouseX, mouseY);
   gravity = createVector(0, 0.1);
 
   background('pink');
-  for (let a = 0; a < 100; a++) emitter.createParticle;
 }
+
 function draw() {
-  for (let a = 0; a < emitters.length; a++) {
-    emitters[a].addParticle();
-  }
-
   background('pink');
-  for (let a = 0; a < emitters.length; a++) {
-    emitters[a].addParticle();
-    emitters[a].update(gravity);
-    emitters[a].display();
+
+  emitter.update(gravity);
+  emitter.display();
+  console.log(emitter.particles.length);
+}
+
+function mouseClicked() {
+  for (let a = 0; a < 100; a++) {
+    emitter.setPosition(mouseX, mouseY);
+    emitter.addParticle(a);
   }
 }
-
-function mousePressed() {
-  emitters.push(new Emitter(mouseX, mouseY));
-}
-
-console.log(emitters.length);

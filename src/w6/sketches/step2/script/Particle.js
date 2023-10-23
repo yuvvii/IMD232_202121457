@@ -4,7 +4,7 @@ class Particle {
     this.vel = createVector(1, 0);
     this.vel.rotate((TAU / 360) * random(-150, -30));
     this.acc = createVector(0, 0);
-    this.rad = 5;
+    this.rad = 10;
     this.lifeSpan = 255;
   }
   applyForce(force) {

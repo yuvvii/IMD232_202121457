@@ -2,9 +2,15 @@ class Emitter {
   constructor(x, y) {
     this.particles = [];
     this.pos = createVector(x, y);
+    colorMode(HSL, 360, 100, 100, 100);
   }
+
   addParticle() {
     this.particles.push(new Particle(this.pos.x, this.pos.y));
+  }
+
+  setPosition(x, y) {
+    this.pos.set(x, y);
   }
 
   update(gravity) {
@@ -18,8 +24,8 @@ class Emitter {
   }
 
   display() {
-    for (let a = 0; a < this.particles.length; a++) {
-      this.particles[a].display();
+    for (let a = this.particles.length - 1; a >= 0; a--) {
+      this.particles[a].display(gravity);
     }
   }
 }

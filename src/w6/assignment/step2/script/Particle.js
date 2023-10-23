@@ -1,18 +1,17 @@
 class Particle {
   constructor(x, y) {
     this.pos = createVector(x, y);
-    this.vel = createVector(0, 1);
-    // this.vel.rotate((TAU / 360) * random(360));
-    this.mass = 10;
+    this.vel = createVector(3, 0);
+    this.vel.rotate((TAU / 360) * random(-360, 0));
     this.acc = createVector(0, 0);
-    this.rad = 10;
+    this.rad = 4;
     this.lifeSpan = 60;
-    colorMode(HSL, 360, 100, 100);
-    this.color = color(random(360), random(70, 100), random(70, 100));
+    this.mass = 10;
+    this.color = color(random(360), random(70, 100), random(70, 100), 100);
   }
 
   applyForce(force) {
-    this.acc.set(force);
+    this.acc.add(force);
   }
 
   update() {
@@ -20,12 +19,14 @@ class Particle {
     this.pos.add(this.vel);
     this.acc.mult(0);
     this.lifeSpan -= 1;
-    this.vel.normalize();
+
+    let alpha = map(this.lifeSpan, 0, 60, 0, 100);
+    this.color.setAlpha(alpha);
   }
 
   display() {
     noStroke();
-    fill(this.color, this.lifeSpan);
+    fill(this.color);
     ellipse(this.pos.x, this.pos.y, this.rad * 2);
   }
 
