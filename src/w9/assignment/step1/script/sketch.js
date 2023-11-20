@@ -17,7 +17,7 @@ const {
   Vertices,
 } = Matter;
 
-// decomp 생성;
+// decomp 생성
 Common.setDecomp(decomp);
 
 // create engine
@@ -86,7 +86,6 @@ function setup() {
     }));
   };
 
-  // 나누기
   const bodyA = decomp.quickDecomp(A);
   const bodyB = decomp.quickDecomp(B);
   const bodyC = decomp.quickDecomp(C);
