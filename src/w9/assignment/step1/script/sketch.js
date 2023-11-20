@@ -1,6 +1,3 @@
-const oWidth = 800;
-const oHeight = 800;
-
 //matter 쓰기 위한 기본 변수
 const {
   Body: MatterBody,
@@ -33,6 +30,9 @@ let ropeA;
 let ropeB;
 let ropeC;
 let mouse;
+
+const oWidth = 800;
+const oHeight = 800;
 
 function setup() {
   setCanvasContainer('canvas', oWidth, oHeight, true);
